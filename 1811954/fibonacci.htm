@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fibonacci sequence</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style type="text/css">body{margin:40px
+auto;max-width:650px;line-height:1.6;font-size:18px;color:#444;padding:0
+10px}h1,h2,h3{line-height:1.2}</style>
+    <script type="text/javascript">
+    /*zwei verschiedene Algorithmen für ein bisschen Abwechslung*/
+
+      //klassischer Algorithmus
+      function getNthFibonacci(n) {
+        var x = 0;
+        var y = 1;
+        var z = 1;
+        var sequence = [x,y,z];
+        for (var i = 2; i < n; i++) {
+          x = y;
+          y = z;
+          z = x + y;
+          sequence.push(z);
+        }
+        console.log(sequence);
+        return sequence.toString();
+      }
+
+      //effizienterer Algorithmus
+      function getFibonacciUntil(n) {
+      var sequence = [0,1,1];
+      var temp = 0;
+        for (var i = 2; i < n; i++) {
+          temp = sequence[i-1] + sequence[i];
+          if(temp > n) {
+            return sequence.toString();
+          }
+          sequence.push(temp);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Behold the great Fibonacci sequence</h2>
+    <form>
+      <label for="input1">Das wie vielte Element der Fibonacci Folge soll errechnet werden?</label><br>
+      <input type="number" name="input" min="1">
+      <button type="button" name="button" onclick="document.getElementById('result').innerHTML = getNthFibonacci(document.getElementsByName('input')[0].value);">
+        submit
+      </button>
+    </form>
+    <p id="result"></p>
+    <br><br>
+    <form>
+      <label for="input2">Die Fibonacci Zahlen zwischen 1 und was sollen errechnet werden?</label><br>
+      <input type="number" name="input" min="1">
+      <button type="button" name="button2" onclick="document.getElementById('result2').innerHTML = getFibonacciUntil(document.getElementsByName('input')[1].value);">
+        submit
+      </button>
+    </form>
+    <p id="result2"></p>
+  </body>
+</html>
